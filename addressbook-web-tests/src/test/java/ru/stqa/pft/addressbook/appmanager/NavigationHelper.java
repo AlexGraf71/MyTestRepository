@@ -18,5 +18,9 @@ public class NavigationHelper {
   public void gotoHomePage() {
     wd.findElement(By.linkText("home page")).click();
   }
+
+  public void gotoHome() {
+    wd.findElement(By.linkText("home")).click();
+  }
 }
 
