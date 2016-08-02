@@ -23,15 +23,15 @@ public class ApplicationManager {
   }
 
   public void init() {
-    if(Objects.equals(browser, BrowserType.FIREFOX))
-    {wd = new FirefoxDriver();
-    } else if(Objects.equals(browser, BrowserType.CHROME)){
+    if (Objects.equals(browser, BrowserType.FIREFOX)) {
+      wd = new FirefoxDriver();
+    } else if (Objects.equals(browser, BrowserType.CHROME)) {
       wd = new ChromeDriver();
-    }else if(Objects.equals(browser, BrowserType.OPERA_BLINK)){
+    } else if (Objects.equals(browser, BrowserType.OPERA_BLINK)) {
       wd = new OperaDriver();
     }
 
-    wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook");
     contactHelper = new ContactHelper(wd);
     groupHelper = new GroupHelper(wd);
