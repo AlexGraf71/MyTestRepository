@@ -1,6 +1,8 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
+
+  private int id;
   private final String name;
   private final String initials;
   private final String lastname;
@@ -15,8 +17,9 @@ public class ContactData {
   private final String email;
   private final String group;
 
-  public ContactData(String name, String initials, String lastname, String nik, String title, String company, String address, String homephonenumber,
+  public ContactData(int id, String name, String initials, String lastname, String nik, String title, String company, String address, String homephonenumber,
                      String mobilephonenumber, String workphonenumber, String fax, String email, String group) {
+    this.id = id;
     this.name = name;
     this.initials = initials;
     this.lastname = lastname;
@@ -30,6 +33,28 @@ public class ContactData {
     this.fax = fax;
     this.email = email;
     this.group = group;
+  }
+
+  public ContactData(String name, String initials, String lastname, String nik, String title, String company, String address, String homephonenumber,
+                     String mobilephonenumber, String workphonenumber, String fax, String email, String group) {
+    this.id = Integer.MAX_VALUE;
+    this.name = name;
+    this.initials = initials;
+    this.lastname = lastname;
+    this.nik = nik;
+    this.title = title;
+    this.company = company;
+    this.address = address;
+    this.homephonenumber = homephonenumber;
+    this.mobilephonenumber = mobilephonenumber;
+    this.workphonenumber = workphonenumber;
+    this.fax = fax;
+    this.email = email;
+    this.group = group;
+  }
+
+  public int getId() {
+    return id;
   }
 
   public String getName() {
@@ -83,4 +108,29 @@ public class ContactData {
   public String getGroup() {
     return group;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    return name != null ? name.equals(that.name) : that.name == null;
+
+  }
+
+  @Override
+  public int hashCode() {
+    return name != null ? name.hashCode() : 0;
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            '}';
+  }
+
 }
