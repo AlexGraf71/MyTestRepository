@@ -70,8 +70,13 @@ public class ContactHelper extends HelperBase {
     initCreateContact();
     fillContactForm(contact, true);
     submitCreateContact();
+  }
 
-
+  public void modifyContact(int index, ContactData contact) {
+    selectContact(index);
+    initEditContact();
+    fillContactForm(contact, false);
+    submitEditContact();
   }
 
   public boolean isThereAContact() {
