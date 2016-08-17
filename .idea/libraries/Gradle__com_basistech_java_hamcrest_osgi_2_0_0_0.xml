@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.basistech:java-hamcrest-osgi:2.0.0.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.basistech/java-hamcrest-osgi/2.0.0.0/2308f0e4a81e24545087e292f5db19508937ce49/java-hamcrest-osgi-2.0.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.basistech/java-hamcrest-osgi/2.0.0.0/964764b11a9c19e66fe231aaaad47b7f235e6897/java-hamcrest-osgi-2.0.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

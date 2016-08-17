@@ -7,4 +7,5 @@ repositories{
 dependencies{
     compile 'org.seleniumhq.selenium:selenium-java:2.53.1'
     compile 'org.testng:testng:6.9.10'
+    compile 'com.basistech:java-hamcrest-osgi:2.0.0.0'
 }
