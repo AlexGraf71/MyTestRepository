@@ -70,15 +70,15 @@ public class ContactData {
     return address;
   }
 
-  public String getHomephonenumber() {
+  public String getHomePhoneNumber() {
     return homephonenumber;
   }
 
-  public String getMobilephonenumber() {
+  public String getMobilePhoneNumber() {
     return mobilephonenumber;
   }
 
-  public String getWorkphonenumber() {
+  public String getWorkPhoneNumber() {
     return workphonenumber;
   }
 
@@ -109,7 +109,7 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withLastname(String lastname) {
+  public ContactData withLastName(String lastname) {
     this.lastname = lastname;
     return this;
   }

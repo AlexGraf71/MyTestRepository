@@ -22,7 +22,7 @@ public class GroupModificationTests extends TestBase {
     Groups before = app.group().all();
     GroupData modifyGroup = before.iterator().next();
     GroupData group = new GroupData()
-            .withId(modifyGroup.getId()).withName("test1").withHeader("Test67").withFooter("Test65");
+            .withId(modifyGroup.getId()).withName("test87").withHeader("Test67").withFooter("Test65");
     app.group().modify(group);
     assertThat(app.group().count(),equalTo(before.size()));
     Groups after = app.group().all();

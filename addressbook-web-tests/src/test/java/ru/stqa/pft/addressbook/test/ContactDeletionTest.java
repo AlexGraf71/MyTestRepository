@@ -15,14 +15,17 @@ public class ContactDeletionTest extends TestBase {
   public void ensurePreconditions() {
     if (app.contact().all().size() == 0) {
       app.contact().create(new ContactData()
-              .withLastname("Ivan").withInitials("I.I.I.").withLastname("Ivanov").withNik("Vano")
-              .withTitle("Title").withCompany("Smartech").withHomePhoneNumber("8999999999").withWorkPhoneNumber("8999999999").withGroup("test1"));
+              .withName("Ivan").withInitials("I.I.I.").withLastName("Ivanov").withNik("Vano")
+              .withTitle("Title").withCompany("Smartech").withAddress("Тургениевская 67")
+              .withHomePhoneNumber("8999999999").withMobilePhoneNumber("99999999009909")
+              .withWorkPhoneNumber("8999999999").withEmail("test@mail.ru").withGroup("test1"));
       app.goTo().homePage();
     }
   }
 
   @Test
   public void ContactDeletionTest() {
+
     Contacts before = app.contact().all();
     ContactData deletedContact = before.iterator().next();
     app.contact().delete(deletedContact);
