@@ -30,6 +30,9 @@ public class NavigationHelper extends HelperBase {
     }
     click(By.linkText("home"));
   }
+  public void gotoHome2() {
+    click(By.linkText("home"));
+  }
 
 }
 

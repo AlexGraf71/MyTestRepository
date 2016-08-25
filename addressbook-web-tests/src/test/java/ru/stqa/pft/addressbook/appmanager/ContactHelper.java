@@ -122,12 +122,13 @@ public class ContactHelper extends HelperBase {
     contactCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
-      String firstName = element.findElement(By.cssSelector("td:nth-of-type(3)")).getText();
-      String lastName = element.findElement(By.cssSelector("td:nth-of-type(2)")).getText();
-      String address = element.findElement(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[4]")).getText();
-      String email = element.findElement(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[5]")).getText();
-      String[] phones = element.findElement(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[6]")).getText().split("\n");
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      String firstName = cells.get(2).getText();
+      String lastName = cells.get(1).getText();
+      String address = cells.get(3).getText();
+      String email = cells.get(4).getText();
+      String[] phones =cells.get(5).getText().split("\n");
       contactCache.add(new ContactData()
               .withId(id).withName(firstName).withInitials(null).withLastName(lastName).withAddress(address)
               .withHomePhoneNumber(phones[0]).withMobilePhoneNumber(phones[1]).withWorkPhoneNumber(phones[2]).withEmail(email));
