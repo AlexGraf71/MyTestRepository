@@ -4,6 +4,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+import java.util.Arrays;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -11,30 +15,37 @@ public class ContactPhoneTest extends TestBase {
 
  @BeforeMethod
   public void ensurePreconditions() {
-    if (app.contact().all().size() == 0) {
+    if (app.contact().incompleteContact().size() == 0) {
       app.contact().create(new ContactData()
-              .withName("Ivan").withInitials("I.I.I.").withLastName("Ivanov").withNik("Vano")
-              .withTitle("Title").withCompany("Smartech").withAddress("Тургениевская 67")
+              .withName("Ivan").withLastName("Ivanov")
+              .withAddress("Тургениевская 67")
               .withHomePhoneNumber("8999999999").withMobilePhoneNumber("99999999009909")
-              .withWorkPhoneNumber("8999999999").withEmail("test@mail.ru").withGroup("test1"));
+              .withWorkPhoneNumber("8999999999").withEmail("test@mail.ru").withGroup(null));
       app.goTo().homePage();
     }
   }
 
   @Test
   public void testContactPhone(){
-    ContactData contact = app.contact().all().iterator().next();
+    ContactData contact = app.contact().incompleteContact().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
+    assertThat(contact.getName(), equalTo(contactInfoFromEditForm.getName()));
+    assertThat(contact.getLastname(), equalTo(contactInfoFromEditForm.getLastname()));
     assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
-    assertThat(contact.getHomePhoneNumber(), equalTo(cleaned(contactInfoFromEditForm.getHomePhoneNumber())));
-    assertThat(contact.getMobilePhoneNumber(), equalTo(cleaned(contactInfoFromEditForm.getMobilePhoneNumber())));
-    assertThat(contact.getWorkPhoneNumber(), equalTo(cleaned(contactInfoFromEditForm.getWorkPhoneNumber())));
+    assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
+    assertThat(contact.getEmail(), equalTo(contactInfoFromEditForm.getEmail()));
+
     assertThat(contact.getEmail(), equalTo(contactInfoFromEditForm.getEmail()));
   }
 
-  public String cleaned(String phone){
-    return phone.replaceAll("\\s","").replaceAll("[1()]","");
+  private String mergePhones(ContactData contact){
+    return Arrays.asList(contact.getHomePhoneNumber(),contact.getMobilePhoneNumber(), contact.getWorkPhoneNumber()).stream()
+            .filter((s)->!s.equals("")).map(ContactPhoneTest::cleaned).collect(Collectors.joining("\n"));
+
+  }
+  public static String cleaned(String phone){
+    return phone.replaceAll("\\s","").replaceAll("[-()]","");
   }
 
 }
