@@ -1,0 +1,29 @@
+<list>
+  <contact>
+    <name>firstName 0</name>
+    <lastName>lastName 0</lastName>
+    <address>address 0</address>
+    <homephonenumber>8963933970</homephonenumber>
+    <mobilephonenumber>8966933970</mobilephonenumber>
+    <workphonenumber>8953933970</workphonenumber>
+    <email>email0@mail.ru</email>
+  </contact>
+  <contact>
+    <name>firstName 1</name>
+    <lastName>lastName 1</lastName>
+    <address>address 1</address>
+    <homephonenumber>8963933971</homephonenumber>
+    <mobilephonenumber>8966933971</mobilephonenumber>
+    <workphonenumber>8953933971</workphonenumber>
+    <email>email1@mail.ru</email>
+  </contact>
+  <contact>
+    <name>firstName 2</name>
+    <lastName>lastName 2</lastName>
+    <address>address 2</address>
+    <homephonenumber>8963933972</homephonenumber>
+    <mobilephonenumber>8966933972</mobilephonenumber>
+    <workphonenumber>8953933972</workphonenumber>
+    <email>email2@mail.ru</email>
+  </contact>
+</list>

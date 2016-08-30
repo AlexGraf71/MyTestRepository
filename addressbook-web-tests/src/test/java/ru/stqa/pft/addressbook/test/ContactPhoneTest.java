@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.Arrays;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -31,7 +30,7 @@ public class ContactPhoneTest extends TestBase {
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
     assertThat(contact.getName(), equalTo(contactInfoFromEditForm.getName()));
-    assertThat(contact.getLastname(), equalTo(contactInfoFromEditForm.getLastname()));
+    assertThat(contact.getLastName(), equalTo(contactInfoFromEditForm.getLastName()));
     assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
     assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
     assertThat(contact.getEmail(), equalTo(contactInfoFromEditForm.getEmail()));

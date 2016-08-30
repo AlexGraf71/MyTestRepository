@@ -1,0 +1,29 @@
+[
+  {
+    "name": "firstName 0",
+    "lastname": "lastName 0",
+    "address": "address 0",
+    "homephonenumber": "8963933970",
+    "mobilephonenumber": "8966933970",
+    "workphonenumber": "8953933970",
+    "email": "email0@mail.ru"
+  },
+  {
+    "name": "firstName 1",
+    "lastname": "lastName 1",
+    "address": "address 1",
+    "homephonenumber": "8963933971",
+    "mobilephonenumber": "8966933971",
+    "workphonenumber": "8953933971",
+    "email": "email1@mail.ru"
+  },
+  {
+    "name": "firstName 2",
+    "lastname": "lastName 2",
+    "address": "address 2",
+    "homephonenumber": "8963933972",
+    "mobilephonenumber": "8966933972",
+    "workphonenumber": "8953933972",
+    "email": "email2@mail.ru"
+  }
+]

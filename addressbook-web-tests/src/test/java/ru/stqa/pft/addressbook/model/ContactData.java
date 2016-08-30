@@ -1,23 +1,38 @@
 package ru.stqa.pft.addressbook.model;
 
-public class ContactData {
+import com.google.gson.annotations.Expose;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
+import java.io.File;
+@XStreamAlias("contact")
+
+public class ContactData {
+  @XStreamOmitField
   private int id;
+  @Expose
   private String name;
   private String initials;
-  private String lastname;
+  @Expose
+  private String lastName;
   private String nik;
   private String title;
   private String company;
+  @Expose
   private String address;
+  @Expose
   private String homephonenumber;
+  @Expose
   private String mobilephonenumber;
+  @Expose
   private String workphonenumber;
   private String fax;
+  @Expose
   private String email;
   private String group;
   private String allPhones;
   private String allInfo;
+  private File photo;
 
   public String getAllPhones() {
     return allPhones;
@@ -35,8 +50,8 @@ public class ContactData {
     return initials;
   }
 
-  public String getLastname() {
-    return lastname;
+  public String getLastName() {
+    return lastName;
   }
 
   public String getNik() {
@@ -83,6 +98,10 @@ public class ContactData {
     return allInfo;
   }
 
+  public File getPhoto() {return photo;
+  }
+
+
   public ContactData withId(int id) {
     this.id = id;
     return this;
@@ -99,7 +118,7 @@ public class ContactData {
   }
 
   public ContactData withLastName(String lastname) {
-    this.lastname = lastname;
+    this.lastName = lastname;
     return this;
   }
 
@@ -163,6 +182,11 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withPhoto(File photo) {
+    this.photo = photo;
+    return this;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -172,7 +196,7 @@ public class ContactData {
 
     if (id != that.id) return false;
     if (name != null ? !name.equals(that.name) : that.name != null) return false;
-    return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
+    return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
 
   }
 
@@ -180,7 +204,7 @@ public class ContactData {
   public int hashCode() {
     int result = id;
     result = 31 * result + (name != null ? name.hashCode() : 0);
-    result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
     return result;
   }
 

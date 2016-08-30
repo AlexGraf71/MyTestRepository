@@ -34,7 +34,7 @@ public class ContactInfoTest extends TestBase {
 
   private String mergeAllInformation(ContactData contact) {
 
-    String fullName =  Arrays.asList(contact.getName(),contact.getLastname())
+    String fullName =  Arrays.asList(contact.getName(),contact.getLastName())
             .stream().filter(s -> !(s == null) && ! s.equals(""))
             .map(ContactInfoTest::cleaningAllInformation )
             .collect(Collectors.joining(" "));
