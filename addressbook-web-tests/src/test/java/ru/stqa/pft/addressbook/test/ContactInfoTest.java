@@ -12,6 +12,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactInfoTest extends TestBase {
 
+  public static String cleaned(String phone) {
+    return phone.replaceAll("\\s", "").replaceAll("-()", "");
+  }
+
+  public static String cleaningAllInformation(String allInfo) {
+    return allInfo.replaceAll("-()", "");
+  }
+
   @BeforeMethod
   public void ensurePreconditions() {
     if (app.contact().all().size() == 0) {
@@ -34,46 +42,38 @@ public class ContactInfoTest extends TestBase {
 
   private String mergeAllInformation(ContactData contact) {
 
-    String fullName =  Arrays.asList(contact.getName(),contact.getLastName())
-            .stream().filter(s -> !(s == null) && ! s.equals(""))
-            .map(ContactInfoTest::cleaningAllInformation )
+    String fullName = Arrays.asList(contact.getName(), contact.getLastName())
+            .stream().filter(s -> !(s == null) && !s.equals(""))
+            .map(ContactInfoTest::cleaningAllInformation)
             .collect(Collectors.joining(" "));
 
     String address = Arrays.asList(contact.getAddress())
-            .stream().filter(s -> !(s == null) && ! s.equals(""))
-            .map(ContactInfoTest::cleaningAllInformation )
-            .collect(Collectors.joining("\n")) ;
+            .stream().filter(s -> !(s == null) && !s.equals(""))
+            .map(ContactInfoTest::cleaningAllInformation)
+            .collect(Collectors.joining("\n"));
 
     String homePhone = "H: " + Arrays.asList(contact.getHomePhoneNumber())
-            .stream().filter(s -> !(s == null) && ! s.equals(""))
-            .map(ContactInfoTest::cleaned )
+            .stream().filter(s -> !(s == null) && !s.equals(""))
+            .map(ContactInfoTest::cleaned)
             .collect(Collectors.joining("\n")) + "\n";
 
     String mobilePhone = "M: " + Arrays.asList(contact.getMobilePhoneNumber())
-            .stream().filter(s -> !(s == null) && ! s.equals(""))
-            .map(ContactInfoTest::cleaned )
-            .collect(Collectors.joining("\n"))+ "\n";
+            .stream().filter(s -> !(s == null) && !s.equals(""))
+            .map(ContactInfoTest::cleaned)
+            .collect(Collectors.joining("\n")) + "\n";
 
     String workPhone = "W: " + Arrays.asList(contact.getWorkPhoneNumber())
-            .stream().filter(s -> !(s == null) && ! s.equals(""))
-            .map(ContactInfoTest::cleaned )
-            .collect(Collectors.joining("\n"))+ "\n";
+            .stream().filter(s -> !(s == null) && !s.equals(""))
+            .map(ContactInfoTest::cleaned)
+            .collect(Collectors.joining("\n")) + "\n";
 
-    String firstEmail =Arrays.asList(contact.getEmail())
-            .stream().filter(s -> !(s == null) && ! s.equals(""))
-            .map(ContactInfoTest::cleaningAllInformation )
+    String firstEmail = Arrays.asList(contact.getEmail())
+            .stream().filter(s -> !(s == null) && !s.equals(""))
+            .map(ContactInfoTest::cleaningAllInformation)
             .collect(Collectors.joining("\n"));
 
-    return fullName + "\n" + address +"\n\n" + homePhone + mobilePhone + workPhone + "\n" + firstEmail +
+    return fullName + "\n" + address + "\n\n" + homePhone + mobilePhone + workPhone + "\n" + firstEmail +
             " (www." + firstEmail.substring(firstEmail.indexOf("@") + 1) + ")";
-  }
-
-  public static String cleaned(String phone) {
-    return phone.replaceAll("\\s", "").replaceAll("-()", "");
-  }
-
-  public static String cleaningAllInformation(String allInfo){
-    return allInfo.replaceAll("-()","");
   }
 
 }

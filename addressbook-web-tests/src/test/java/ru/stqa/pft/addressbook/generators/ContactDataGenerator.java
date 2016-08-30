@@ -25,12 +25,12 @@ public class ContactDataGenerator {
   @Parameter(names = "-d", description = "Data format")
   public String format;
 
-  public static void main (String[] args) throws IOException {
+  public static void main(String[] args) throws IOException {
     ContactDataGenerator generator = new ContactDataGenerator();
     JCommander jCommander = new JCommander(generator);
     try {
       jCommander.parse(args);
-    }catch (ParameterException ex ){
+    } catch (ParameterException ex) {
       jCommander.usage();
       return;
     }
@@ -39,13 +39,13 @@ public class ContactDataGenerator {
 
   private void run() throws IOException {
     List<ContactData> contacts = generateContact(count);
-    if(format.equals("csv")){
-      saveAsCsv(contacts,new File(file));
-    }else if (format.equals("xml")){
-      saveAsXml(contacts,new File(file));
-    }else if (format.equals("json")){
-      saveAsJson(contacts,new File(file));
-    }else{
+    if (format.equals("csv")) {
+      saveAsCsv(contacts, new File(file));
+    } else if (format.equals("xml")) {
+      saveAsXml(contacts, new File(file));
+    } else if (format.equals("json")) {
+      saveAsJson(contacts, new File(file));
+    } else {
       System.out.println("Неверный формат" + format);
     }
   }
@@ -70,18 +70,17 @@ public class ContactDataGenerator {
 
   private void saveAsCsv(List<ContactData> contacts, File file) throws IOException {
     Writer writer = new FileWriter(file);
-    for(ContactData contact: contacts){
+    for (ContactData contact : contacts) {
       writer.write(String.format("%s;%s;%s;%s;%s;%s;%s\n",
-              contact.getName(),contact.getLastName(),contact.getAddress(),contact.getHomePhoneNumber(),contact.getMobilePhoneNumber(),contact.getWorkPhoneNumber(),contact.getEmail()));
+              contact.getName(), contact.getLastName(), contact.getAddress(), contact.getHomePhoneNumber(), contact.getMobilePhoneNumber(), contact.getWorkPhoneNumber(), contact.getEmail()));
     }
     writer.close();
   }
 
 
-
   private List<ContactData> generateContact(int count) {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    for (int i =0; i < count; i++ ){
+    for (int i = 0; i < count; i++) {
       contacts.add(new ContactData()
               .withName(String.format("firstName %s", i)).withLastName(String.format("lastName %s", i)).withAddress(String.format("address %s", i))
               .withHomePhoneNumber(String.format("896393397%s", i)).withMobilePhoneNumber(String.format("896693397%s", i))

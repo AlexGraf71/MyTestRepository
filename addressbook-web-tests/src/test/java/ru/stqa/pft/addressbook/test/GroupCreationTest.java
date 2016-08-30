@@ -8,11 +8,12 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
-import java.io.*;
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -46,10 +47,10 @@ public class GroupCreationTest extends TestBase {
       line = reader.readLine();
     }
     Gson gson = new Gson();
-    List<GroupData> groups = gson.fromJson(json, new TypeToken<List<GroupData>>(){}.getType());
+    List<GroupData> groups = gson.fromJson(json, new TypeToken<List<GroupData>>() {
+    }.getType());
     return groups.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
   }
-
 
 
   @Test(dataProvider = "validGroupsFromXml")
@@ -57,10 +58,10 @@ public class GroupCreationTest extends TestBase {
     app.goTo().groupPage();
     Groups before = app.group().all();
     app.group().create(group);
-    assertThat(app.group().count(),equalTo(before.size()+1));
+    assertThat(app.group().count(), equalTo(before.size() + 1));
     Groups after = app.group().all();
     assertThat(after, equalTo(
-            before.withAdded(group.withId(after.stream().mapToInt((g)-> g.getId()).max().getAsInt()))));
+            before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
 
   }
 
@@ -71,7 +72,7 @@ public class GroupCreationTest extends TestBase {
     GroupData group = new GroupData()
             .withName("test1'").withFooter("test2'").withHeader("test3'");
     app.group().create(group);
-    assertThat(app.group().count(),equalTo(before.size()));
+    assertThat(app.group().count(), equalTo(before.size()));
     Groups after = app.group().all();
     assertThat(after, equalTo(before));
 

@@ -1,7 +1,7 @@
 [
   {
     "name": "firstName 0",
-    "lastname": "lastName 0",
+    "lastName": "lastName 0",
     "address": "address 0",
     "homephonenumber": "8963933970",
     "mobilephonenumber": "8966933970",
@@ -10,7 +10,7 @@
   },
   {
     "name": "firstName 1",
-    "lastname": "lastName 1",
+    "lastName": "lastName 1",
     "address": "address 1",
     "homephonenumber": "8963933971",
     "mobilephonenumber": "8966933971",
@@ -19,7 +19,7 @@
   },
   {
     "name": "firstName 2",
-    "lastname": "lastName 2",
+    "lastName": "lastName 2",
     "address": "address 2",
     "homephonenumber": "8963933972",
     "mobilephonenumber": "8966933972",

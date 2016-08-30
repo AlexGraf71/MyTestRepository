@@ -26,27 +26,27 @@ public class GroupDataGenerator {
   @Parameter(names = "-d", description = "Data format")
   public String format;
 
-public static void main (String[] args) throws IOException {
-  GroupDataGenerator generator = new GroupDataGenerator();
-  JCommander jCommander = new JCommander(generator);
-  try {
-    jCommander.parse(args);
-  }catch (ParameterException ex ){
-    jCommander.usage();
-    return;
+  public static void main(String[] args) throws IOException {
+    GroupDataGenerator generator = new GroupDataGenerator();
+    JCommander jCommander = new JCommander(generator);
+    try {
+      jCommander.parse(args);
+    } catch (ParameterException ex) {
+      jCommander.usage();
+      return;
+    }
+    generator.run();
   }
-  generator.run();
-}
 
   private void run() throws IOException {
     List<GroupData> groups = generateGroups(count);
-    if(format.equals("csv")){
-    saveAsCsv(groups,new File(file));
-    }else if (format.equals("xml")){
-      saveAsXml(groups,new File(file));
-    }else if (format.equals("json")){
-    saveAsJson(groups,new File(file));
-  }else{
+    if (format.equals("csv")) {
+      saveAsCsv(groups, new File(file));
+    } else if (format.equals("xml")) {
+      saveAsXml(groups, new File(file));
+    } else if (format.equals("json")) {
+      saveAsJson(groups, new File(file));
+    } else {
       System.out.println("Неверный формат" + format);
     }
   }
@@ -70,18 +70,17 @@ public static void main (String[] args) throws IOException {
 
 
   private void saveAsCsv(List<GroupData> groups, File file) throws IOException {
-  Writer writer = new FileWriter(file);
-  for(GroupData group: groups){
-    writer.write(String.format("%s;%s;%s\n", group.getName(),group.getFooter(),group.getHeader()));
+    Writer writer = new FileWriter(file);
+    for (GroupData group : groups) {
+      writer.write(String.format("%s;%s;%s\n", group.getName(), group.getFooter(), group.getHeader()));
+    }
+    writer.close();
   }
-  writer.close();
-  }
-
 
 
   private List<GroupData> generateGroups(int count) {
     List<GroupData> groups = new ArrayList<GroupData>();
-    for (int i =0; i < count; i++ ){
+    for (int i = 0; i < count; i++) {
       groups.add(new GroupData().withName(String.format("test %s", i)).withHeader(String.format("test %s", i)).withFooter(String.format("test %s", i)));
     }
 

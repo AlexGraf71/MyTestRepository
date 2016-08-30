@@ -5,6 +5,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 import java.io.File;
+
 @XStreamAlias("contact")
 
 public class ContactData {
@@ -98,7 +99,8 @@ public class ContactData {
     return allInfo;
   }
 
-  public File getPhoto() {return photo;
+  public File getPhoto() {
+    return photo;
   }
 
 
