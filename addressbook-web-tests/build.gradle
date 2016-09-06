@@ -12,10 +12,12 @@ dependencies{
     compile 'com.thoughtworks.xstream:xstream:1.4.9'
     compile 'com.google.code.gson:gson:2.7'
     compile 'ch.qos.logback:logback-classic:1.1.7'
+    compile 'mysql:mysql-connector-java:6.0.4'
+
 }
 
-task testGroups(type: test){
-    useTestNG(){
+task testGroups(type: Test){
+    useTestNG{
         suites 'src/test/resourses/testng-groups.xml'
     }
     if (project.hasProperty('browser')){
@@ -26,8 +28,8 @@ task testGroups(type: test){
     }
 }
 
-task testContacts(type: test) {
-    useTestNG() {
+task testContacts(type: Test) {
+    useTestNG {
         suites 'src/test/resourses/testng-contacts.xml'
     }
     if (project.hasProperty('browser')) {
