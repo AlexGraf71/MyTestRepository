@@ -6,6 +6,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -22,7 +23,7 @@ public class ContactInfoTest extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    if (app.contact().all().size() == 0) {
+    if (app.db().contacts().size() == 0) {
       app.contact().create(new ContactData()
               .withName("Ivan").withLastName("Ivanov")
               .withAddress("Тургениевская 67")
@@ -34,7 +35,7 @@ public class ContactInfoTest extends TestBase {
 
   @Test
   public void testContactPhone() {
-    ContactData contact = app.contact().all().iterator().next();
+    ContactData contact = app.db().contacts().iterator().next();
     ContactData contactInfoFromInfoForm = app.contact().allFromInfoForm(contact);
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
     assertThat(contactInfoFromInfoForm.getAllInfo(), equalTo(mergeAllInformation(contactInfoFromEditForm)));
@@ -42,33 +43,27 @@ public class ContactInfoTest extends TestBase {
 
   private String mergeAllInformation(ContactData contact) {
 
-    String fullName = Arrays.asList(contact.getName(), contact.getLastName())
-            .stream().filter(s -> !(s == null) && !s.equals(""))
+    String fullName = Stream.of(contact.getName(), contact.getLastName()).filter(s -> !(s == null) && !s.equals(""))
             .map(ContactInfoTest::cleaningAllInformation)
             .collect(Collectors.joining(" "));
 
-    String address = Arrays.asList(contact.getAddress())
-            .stream().filter(s -> !(s == null) && !s.equals(""))
+    String address = Stream.of(contact.getAddress()).filter(s -> !(s == null) && !s.equals(""))
             .map(ContactInfoTest::cleaningAllInformation)
             .collect(Collectors.joining("\n"));
 
-    String homePhone = "H: " + Arrays.asList(contact.getHomePhoneNumber())
-            .stream().filter(s -> !(s == null) && !s.equals(""))
+    String homePhone = "H: " + Stream.of(contact.getHomePhoneNumber()).filter(s -> !(s == null) && !s.equals(""))
             .map(ContactInfoTest::cleaned)
             .collect(Collectors.joining("\n")) + "\n";
 
-    String mobilePhone = "M: " + Arrays.asList(contact.getMobilePhoneNumber())
-            .stream().filter(s -> !(s == null) && !s.equals(""))
+    String mobilePhone = "M: " + Stream.of(contact.getMobilePhoneNumber()).filter(s -> !(s == null) && !s.equals(""))
             .map(ContactInfoTest::cleaned)
             .collect(Collectors.joining("\n")) + "\n";
 
-    String workPhone = "W: " + Arrays.asList(contact.getWorkPhoneNumber())
-            .stream().filter(s -> !(s == null) && !s.equals(""))
+    String workPhone = "W: " + Stream.of(contact.getWorkPhoneNumber()).filter(s -> !(s == null) && !s.equals(""))
             .map(ContactInfoTest::cleaned)
             .collect(Collectors.joining("\n")) + "\n";
 
-    String firstEmail = Arrays.asList(contact.getEmail())
-            .stream().filter(s -> !(s == null) && !s.equals(""))
+    String firstEmail = Stream.of(contact.getEmail()).filter(s -> !(s == null) && !s.equals(""))
             .map(ContactInfoTest::cleaningAllInformation)
             .collect(Collectors.joining("\n"));
 
