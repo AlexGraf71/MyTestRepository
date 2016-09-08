@@ -34,5 +34,7 @@ public class NavigationHelper extends HelperBase {
     click(By.linkText("home"));
   }
 
+  public void homePageSelectedGroup() {click(By.xpath("//*[@id=\"content\"]/div/i/a"));
+  }
 }
 

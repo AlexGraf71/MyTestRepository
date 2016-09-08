@@ -35,9 +35,10 @@ public class ContactHelper extends HelperBase {
     type(By.name("work"), contactData.getWorkPhoneNumber());
     type(By.name("fax"), contactData.getFax());
     type(By.name("email"), contactData.getEmail());
-    if (contactData.getGroup() != null){
+    if (contactData.getGroups().size() > 0){
+      Assert.assertTrue(contactData.getGroups().size()== 1);
       if (creation) {
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
       } else {
         Assert.assertFalse((isElementPresent(By.name("new_group"))));
       }
@@ -179,5 +180,14 @@ public class ContactHelper extends HelperBase {
 
     }
     return new Contacts(contactCache);
+  }
+
+  public void addToGroupById(int Id) {
+    addToGroup();
+
+  }
+
+  private void addToGroup() {
+    click(By.name("add"));
   }
 }

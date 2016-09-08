@@ -17,7 +17,7 @@ public class ContactDeletionTest extends TestBase {
               .withName("Ivan").withInitials("I.I.I.").withLastName("Ivanov").withNik("Vano")
               .withTitle("Title").withCompany("Smartech").withAddress("Тургениевская 67")
               .withHomePhoneNumber("8999999999").withMobilePhoneNumber("99999999009909")
-              .withWorkPhoneNumber("8999999999").withEmail("test@mail.ru").withGroup("test1"));
+              .withWorkPhoneNumber("8999999999").withEmail("test@mail.ru"));
       app.goTo().homePage();
     }
   }

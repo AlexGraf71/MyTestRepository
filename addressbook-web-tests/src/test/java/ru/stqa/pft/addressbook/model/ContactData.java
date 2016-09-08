@@ -7,6 +7,8 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "addressbook")
@@ -16,48 +18,65 @@ public class ContactData {
   @XStreamOmitField
   @Id
   private int id;
+
   @Expose
   @Column(name = "firstname")
   private String name;
+
   @Transient
   private String initials;
+
   @Expose
   @Column(name = "lastName")
   private String lastName;
+
   @Transient
   private String nik;
+
   @Transient
   private String title;
+
   @Transient
   private String company;
+
   @Expose
   @Transient
   private String address;
+
   @Expose
   @Column(name = "home")
   @Type(type = "text")
   private String homephonenumber;
+
   @Expose
   @Column(name = "mobile")
   @Type(type = "text")
   private String mobilephonenumber;
+
   @Expose
   @Column(name = "work")
   @Type(type = "text")
   private String workphonenumber;
+
   @Transient
   private String fax;
+
   @Expose
   @Transient
   private String email;
-  @Transient
-  private String group;
+
   @Transient
   private String allPhones;
+
   @Transient
   private String allInfo;
+
   @Transient
   private File photo;
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups",
+          joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
 
   public String getAllPhones() {
     return allPhones;
@@ -115,8 +134,12 @@ public class ContactData {
     return email;
   }
 
-  public String getGroup() {
-    return group;
+  public Groups getGroups() {
+    return new Groups(groups);
+  }
+
+  public void setGroups(Set<GroupData> groups) {
+    this.groups = groups;
   }
 
   public String getAllInfo() {
@@ -193,10 +216,6 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
 
   public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;
@@ -242,4 +261,9 @@ public class ContactData {
             '}';
   }
 
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
+
+  }
 }

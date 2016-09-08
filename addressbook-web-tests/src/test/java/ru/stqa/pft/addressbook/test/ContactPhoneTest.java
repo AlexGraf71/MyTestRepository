@@ -23,7 +23,7 @@ public class ContactPhoneTest extends TestBase {
               .withName("Ivan").withLastName("Ivanov")
               .withAddress("Тургениевская 67")
               .withHomePhoneNumber("8999999999").withMobilePhoneNumber("99999999009909")
-              .withWorkPhoneNumber("8999999999").withEmail("test@mail.ru").withGroup(null));
+              .withWorkPhoneNumber("8999999999").withEmail("test@mail.ru"));
       app.goTo().homePage();
     }
   }
