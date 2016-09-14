@@ -9,6 +9,10 @@ dependencies{
     compile 'org.testng:testng:6.9.10'
     compile 'com.basistech:java-hamcrest-osgi:2.0.0.0'
     compile 'commons-net:commons-net:3.5'
+    compile 'org.subethamail:subethasmtp:3.1.7'
+    compile 'ru.lanwen.verbalregex:java-verbal-expressions:1.4'
+    compile 'io.fabric8.ipaas.apps:cassandra:2.2.153'
+
 }
 
 test {
