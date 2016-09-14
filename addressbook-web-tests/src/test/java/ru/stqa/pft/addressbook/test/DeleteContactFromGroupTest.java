@@ -38,7 +38,7 @@ public class DeleteContactFromGroupTest extends TestBase {
     }
 
     Iterator<ContactData> iteratorContacts = contactsBefore.iterator();
-    
+
   }
 
 }
