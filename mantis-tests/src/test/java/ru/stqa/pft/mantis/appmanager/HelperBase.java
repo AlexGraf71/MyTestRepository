@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 
-  public class HelperBase {
+  public class HelperBase  {
     protected ApplicationManager app;
     protected WebDriver wd;
 

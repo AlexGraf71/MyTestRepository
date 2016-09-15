@@ -8,7 +8,7 @@ import ru.stqa.pft.mantis.appmanager.ApplicationManager;
 import java.io.File;
 import java.io.IOException;
 
-public class TestBase {
+public class TestBase{
 
 
   protected static final ApplicationManager app = new ApplicationManager(System.getProperty("browser",BrowserType.CHROME));
