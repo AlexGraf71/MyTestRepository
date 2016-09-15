@@ -15,13 +15,5 @@ public class ResetPassword extends HelperBase {
     click(By.xpath("//*[@id=\"manage-user-div\"]/table/tbody/tr[6]/td[1]/a"));
     click(By.cssSelector("input[value = 'Сбросить пароль']"));
   }
-
- public void finishResetPassword (String confirmationLink, String password){
-   wd.get(confirmationLink);
-   type(By.name("password"), password);
-   type(By.name("password_confirm"), password);
-   click(By.cssSelector("input[value = 'Изменить учетную запись']"));
-
- }
-
+  
 }

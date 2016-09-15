@@ -30,9 +30,9 @@ public class ResetPasswordTest extends TestBase {
     String email = "user6@localhost.localdomain";
     app.sessionHelper().login("administrator","ruut");
     app.resetPassword().reset("user6");
-    List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
+    List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
     String confirmationLink = findConfirmationLink(mailMessages, email);
-    app.resetPassword().finishResetPassword(confirmationLink,password);
+    app.registration().finish(confirmationLink, password);
     assertTrue(app.newSession().login(user,password));
 
   }
