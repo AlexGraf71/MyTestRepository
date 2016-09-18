@@ -12,6 +12,7 @@ dependencies{
     compile 'org.subethamail:subethasmtp:3.1.7'
     compile 'ru.lanwen.verbalregex:java-verbal-expressions:1.4'
     compile 'io.fabric8.ipaas.apps:cassandra:2.2.153'
+    compile 'biz.futureware.mantis:mantis-axis-soap-client:1.2.19'
 
 }
 
