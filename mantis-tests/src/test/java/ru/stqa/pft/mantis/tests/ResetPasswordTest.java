@@ -26,7 +26,6 @@ public class ResetPasswordTest extends TestBase {
 
   @Test
   public void testResetPassword() throws IOException, MessagingException, ServiceException {
-    skipIfNotFixed(2);
     String user = "user6";
     String password = "password";
     String email = "user6@localhost.localdomain";
