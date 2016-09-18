@@ -9,7 +9,7 @@ public class ResetPassword extends HelperBase {
   }
   public void reset (String username) {
     click(By.xpath("//*[@id=\"manage-menu\"]/ul/li[1]/a"));
-    click(By.xpath("//*[@id=\"manage-user-div\"]/table/tbody/tr[6]/td[1]/a"));
+    click(By.xpath("//*[@id=\"manage-user-div\"]/table/tbody/tr[1]/td[1]/a"));
     click(By.cssSelector("input[value = 'Сбросить пароль']"));
   }
 
