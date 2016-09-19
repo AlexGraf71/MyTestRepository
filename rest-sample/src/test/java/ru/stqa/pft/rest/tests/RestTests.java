@@ -23,7 +23,7 @@ public class RestTests extends TestBase{
 
   @Test
   public void tessCreateIssue() throws IOException {
-    skipIfNotFixed(11);
+    skipIfNotFixed(3);
     Set<Issue> oldIssues = getIssues();
     Issue newIssue = new Issue().withSubject("test").withDescription("test");
     int issueId = createIssue(newIssue);
