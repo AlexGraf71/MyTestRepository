@@ -10,6 +10,6 @@ dependencies{
     compile 'com.basistech:java-hamcrest-osgi:2.0.0.0'
 }
 
-test{
+test {
     useTestNG()
-}
+ }
