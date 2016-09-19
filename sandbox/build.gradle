@@ -9,3 +9,7 @@ dependencies{
     compile 'org.testng:testng:6.9.10'
     compile 'com.basistech:java-hamcrest-osgi:2.0.0.0'
 }
+
+test{
+    useTestNG()
+}
