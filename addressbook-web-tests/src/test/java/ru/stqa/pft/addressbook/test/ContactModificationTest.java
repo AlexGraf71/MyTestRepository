@@ -14,10 +14,10 @@ public class ContactModificationTest extends TestBase {
   public void ensurePreconditions() {
     if (app.db().contacts().size() == 0) {
       app.contact().create(new ContactData()
-              .withName("Ivan").withInitials("I.I.I.").withLastName("Ivanov").withNik("Vano")
-              .withTitle("Title").withCompany("Smartech").withAddress("Тургениевская 67")
-              .withHomePhoneNumber("8999999999").withMobilePhoneNumber("99999999009909")
-              .withWorkPhoneNumber("8999999999").withEmail("test@mail.ru"));
+          .withName("Ivan").withInitials("I.I.I.").withLastName("Ivanov").withNik("Vano")
+          .withTitle("Title").withCompany("Smartech").withAddress("Тургениевская 67")
+          .withHomePhoneNumber("8999999999").withMobilePhoneNumber("99999999009909")
+          .withWorkPhoneNumber("8999999999").withEmail("test@mail.ru"));
       app.goTo().homePage();
     }
   }
@@ -28,8 +28,8 @@ public class ContactModificationTest extends TestBase {
     Contacts before = app.db().contacts();
     ContactData modifyContact = before.iterator().next();
     ContactData contact = new ContactData()
-            .withId(modifyContact.getId()).withName("Сергей").withInitials("С.С.").withLastName("Сергеев").withNik("Vano")
-            .withTitle("Title").withCompany("Smartech").withHomePhoneNumber("8999999999").withWorkPhoneNumber("8999999999");
+        .withId(modifyContact.getId()).withName("Сергей").withInitials("С.С.").withLastName("Сергеев").withNik("Vano")
+        .withTitle("Title").withCompany("Smartech").withHomePhoneNumber("8999999999").withWorkPhoneNumber("8999999999");
     app.contact().modify(contact);
     app.goTo().homePage();
     assertThat(app.contact().count(), equalTo(before.size()));

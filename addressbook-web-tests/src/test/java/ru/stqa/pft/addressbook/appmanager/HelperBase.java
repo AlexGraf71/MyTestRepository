@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 
-import static java.awt.SystemColor.text;
 
 public class HelperBase {
   protected WebDriver wd;
@@ -30,11 +29,12 @@ public class HelperBase {
       }
     }
   }
-  protected void attach (By locator, File file) {
+
+  protected void attach(By locator, File file) {
     if (file != null) {
-        wd.findElement(locator).sendKeys(file.getAbsolutePath());
-      }
+      wd.findElement(locator).sendKeys(file.getAbsolutePath());
     }
+  }
 
   public boolean isAlertPresent() {
     try {

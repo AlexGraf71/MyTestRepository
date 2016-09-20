@@ -3,8 +3,6 @@ package ru.stqa.pft.addressbook.test;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -64,7 +62,7 @@ public class ContactCreationTest extends TestBase {
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(
-            before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+        before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
 
   @Test(dataProvider = "validContactsFromJson")
@@ -75,7 +73,7 @@ public class ContactCreationTest extends TestBase {
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(
-            before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+        before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
 
 
@@ -84,16 +82,16 @@ public class ContactCreationTest extends TestBase {
     Groups groups = app.db().groups();
     Contacts before = app.db().contacts();
     ContactData contact = new ContactData()
-            .withName("Ivan").withInitials("I.I.I.").withLastName("Ivanov").withNik("Vano")
-            .withTitle("Title").withCompany("Smartech").withAddress("Пушкинская 169").withPhoto(new File("src/test/resources/test.png"))
-            .withHomePhoneNumber("8999999999").withMobilePhoneNumber("899889890980")
-            .withWorkPhoneNumber("8999999999").withEmail("test@mail.ru").inGroup(groups.iterator().next());
+        .withName("Ivan").withInitials("I.I.I.").withLastName("Ivanov").withNik("Vano")
+        .withTitle("Title").withCompany("Smartech").withAddress("Пушкинская 169").withPhoto(new File("src/test/resources/test.png"))
+        .withHomePhoneNumber("8999999999").withMobilePhoneNumber("899889890980")
+        .withWorkPhoneNumber("8999999999").withEmail("test@mail.ru").inGroup(groups.iterator().next());
     app.contact().create(contact);
     app.goTo().homePage();
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(
-            before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+        before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
 
 

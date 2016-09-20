@@ -20,41 +20,42 @@ public class ContactInGroupTest extends TestBase {
   public void ensurePreconditions() {
     if (app.db().contacts().size() == 0) {
       app.contact().create(new ContactData()
-              .withName("Ivan").withLastName("Ivanov")
-              .withAddress("Тургениевская 67")
-              .withHomePhoneNumber("8999999999").withMobilePhoneNumber("99999999009909")
-              .withWorkPhoneNumber("8999999999").withEmail("test@mail.ru").withPhoto(new File("src/test/resources/test.png")));
+          .withName("Ivan").withLastName("Ivanov")
+          .withAddress("Тургениевская 67")
+          .withHomePhoneNumber("8999999999").withMobilePhoneNumber("99999999009909")
+          .withWorkPhoneNumber("8999999999").withEmail("test@mail.ru").withPhoto(new File("src/test/resources/test.png")));
       app.goTo().homePage();
     }
   }
-   @Test
-  public void testContactInGroup(){
-     Groups groupsBefore = app.db().groups();
-     Contacts contactsBefore = app.db().contacts();
-     ContactData selectedContact = contactsBefore.iterator().next();
 
-     Groups groupsOfSelectedContact = selectedContact.getGroups();
-     GroupData selectedGroup = groupsBefore.iterator().next();
-     Iterator<ContactData> iteratorContacts = contactsBefore.iterator();
+  @Test
+  public void testContactInGroup() {
+    Groups groupsBefore = app.db().groups();
+    Contacts contactsBefore = app.db().contacts();
+    ContactData selectedContact = contactsBefore.iterator().next();
 
-     while (iteratorContacts.hasNext()) {
-       if (groupsOfSelectedContact.equals(groupsBefore)) {
-         selectedContact = iteratorContacts.next();
-         groupsOfSelectedContact = selectedContact.getGroups();
-       } else break;
-     }
-     if (groupsOfSelectedContact.equals(groupsBefore)) {
-       app.goTo().groupPage();
-       app.group().create(new GroupData().withName("18_test"));
-     }
+    Groups groupsOfSelectedContact = selectedContact.getGroups();
+    GroupData selectedGroup = groupsBefore.iterator().next();
+    Iterator<ContactData> iteratorContacts = contactsBefore.iterator();
 
-     app.goTo().gotoHome();
-     app.contact().selectContactById(selectedContact.getId());
-     app.contact().addToGroupById(selectedGroup.getId());
-     app.goTo().homePageSelectedGroup();
+    while (iteratorContacts.hasNext()) {
+      if (groupsOfSelectedContact.equals(groupsBefore)) {
+        selectedContact = iteratorContacts.next();
+        groupsOfSelectedContact = selectedContact.getGroups();
+      } else break;
+    }
+    if (groupsOfSelectedContact.equals(groupsBefore)) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("18_test"));
+    }
 
-     assertThat(selectedContact.getGroups(), equalTo(groupsOfSelectedContact));
+    app.goTo().gotoHome();
+    app.contact().selectContactById(selectedContact.getId());
+    app.contact().addToGroupById(selectedGroup.getId());
+    app.goTo().homePageSelectedGroup();
 
-   }
+    assertThat(selectedContact.getGroups(), equalTo(groupsOfSelectedContact));
+
+  }
 
 }

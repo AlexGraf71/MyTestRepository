@@ -75,7 +75,7 @@ public class ContactData {
   private File photo;
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name = "address_in_groups",
-          joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+      joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
   private Set<GroupData> groups = new HashSet<GroupData>();
 
   public String getAllPhones() {
@@ -256,9 +256,9 @@ public class ContactData {
   @Override
   public String toString() {
     return "ContactData{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
-            '}';
+        "id=" + id +
+        ", name='" + name + '\'' +
+        '}';
   }
 
   public ContactData inGroup(GroupData group) {

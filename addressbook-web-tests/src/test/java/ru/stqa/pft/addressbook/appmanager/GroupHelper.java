@@ -7,16 +7,17 @@ import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 public class GroupHelper extends HelperBase {
+
+  private Groups groupsCache = null;
+
 
   public GroupHelper(WebDriver wd) {
     super(wd);
   }
-
 
   public void returnToGroupPage() {
     click(By.linkText("group page"));
@@ -53,7 +54,6 @@ public class GroupHelper extends HelperBase {
     click(By.name("edit"));
   }
 
-
   public void create(GroupData group) {
     initGroupCreation();
     fillGroupForm(group);
@@ -82,11 +82,9 @@ public class GroupHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  private Groups groupsCache= null;
-
   public Groups all() {
-    if (groupsCache != null){
-      return  new Groups(groupsCache);
+    if (groupsCache != null) {
+      return new Groups(groupsCache);
     }
     groupsCache = new Groups();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));

@@ -53,8 +53,7 @@ public class ContactDataGenerator {
   private void saveAsJson(List<ContactData> contacts, File file) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
     String json = gson.toJson(contacts);
-    try (Writer writer = new FileWriter(file))
-    {
+    try (Writer writer = new FileWriter(file)) {
       writer.write(json);
     }
 
@@ -64,17 +63,17 @@ public class ContactDataGenerator {
     XStream xstream = new XStream();
     xstream.processAnnotations(ContactData.class);
     String xml = xstream.toXML(contacts);
-    try(Writer writer = new FileWriter(file)){
+    try (Writer writer = new FileWriter(file)) {
       writer.write(xml);
     }
   }
 
 
   private void saveAsCsv(List<ContactData> contacts, File file) throws IOException {
-    try(Writer writer = new FileWriter(file)) {
+    try (Writer writer = new FileWriter(file)) {
       for (ContactData contact : contacts) {
         writer.write(String.format("%s;%s;%s;%s;%s;%s;%s\n",
-                contact.getName(), contact.getLastName(), contact.getAddress(), contact.getHomePhoneNumber(), contact.getMobilePhoneNumber(), contact.getWorkPhoneNumber(), contact.getEmail()));
+            contact.getName(), contact.getLastName(), contact.getAddress(), contact.getHomePhoneNumber(), contact.getMobilePhoneNumber(), contact.getWorkPhoneNumber(), contact.getEmail()));
       }
     }
   }
@@ -84,9 +83,9 @@ public class ContactDataGenerator {
     List<ContactData> contacts = new ArrayList<ContactData>();
     for (int i = 0; i < count; i++) {
       contacts.add(new ContactData()
-              .withName(String.format("firstName %s", i)).withLastName(String.format("lastName %s", i)).withAddress(String.format("address %s", i))
-              .withHomePhoneNumber(String.format("896393397%s", i)).withMobilePhoneNumber(String.format("896693397%s", i))
-              .withWorkPhoneNumber(String.format("895393397%s", i)).withEmail(String.format("email%s@mail.ru", i)));
+          .withName(String.format("firstName %s", i)).withLastName(String.format("lastName %s", i)).withAddress(String.format("address %s", i))
+          .withHomePhoneNumber(String.format("896393397%s", i)).withMobilePhoneNumber(String.format("896693397%s", i))
+          .withWorkPhoneNumber(String.format("895393397%s", i)).withEmail(String.format("email%s@mail.ru", i)));
     }
 
     return contacts;

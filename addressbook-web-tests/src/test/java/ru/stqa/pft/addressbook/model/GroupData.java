@@ -84,9 +84,9 @@ public class GroupData {
 
   public String toString() {
     return "GroupData{" +
-            "name='" + name + '\'' +
-            ", id='" + id + '\'' +
-            '}';
+        "name='" + name + '\'' +
+        ", id='" + id + '\'' +
+        '}';
   }
 
   @Override
