@@ -45,9 +45,9 @@ public class ApplicationManager {
       } else if (Objects.equals(browser, BrowserType.OPERA_BLINK)) {
         wd = new OperaDriver();
       } else {
-        DesiredCapabilities capabilites = new DesiredCapabilities();
-        capabilites.setBrowserName(browser);
-        wd = new RemoteWebDriver(new URL((properties.getProperty("selenium.server"))), capabilites);
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setBrowserName(browser);
+        wd = new RemoteWebDriver(new URL((properties.getProperty("selenium.server"))), capabilities);
       }
     }
 
