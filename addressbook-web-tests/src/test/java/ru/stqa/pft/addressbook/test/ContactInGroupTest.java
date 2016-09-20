@@ -21,7 +21,7 @@ public class ContactInGroupTest extends TestBase {
     if (app.db().contacts().size() == 0) {
       app.contact().create(new ContactData()
           .withName("Ivan").withLastName("Ivanov")
-          .withAddress("Тургениевская 67")
+          .withAddress("Turgenievskaya 67")
           .withHomePhoneNumber("8999999999").withMobilePhoneNumber("99999999009909")
           .withWorkPhoneNumber("8999999999").withEmail("test@mail.ru").withPhoto(new File("src/test/resources/test.png")));
       app.goTo().homePage();
