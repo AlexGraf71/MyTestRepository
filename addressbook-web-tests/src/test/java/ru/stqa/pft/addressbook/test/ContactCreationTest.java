@@ -83,7 +83,7 @@ public class ContactCreationTest extends TestBase {
     Contacts before = app.db().contacts();
     ContactData contact = new ContactData()
         .withName("Ivan").withInitials("I.I.I.").withLastName("Ivanov").withNik("Vano")
-        .withTitle("Title").withCompany("Smartech").withAddress("Пушкинская 169").withPhoto(new File("src/test/resources/test.png"))
+        .withTitle("Title").withCompany("Smartech").withAddress("Turgenievskaya 169").withPhoto(new File("src/test/resources/test.png"))
         .withHomePhoneNumber("8999999999").withMobilePhoneNumber("899889890980")
         .withWorkPhoneNumber("8999999999").withEmail("test@mail.ru").inGroup(groups.iterator().next());
     app.contact().create(contact);
