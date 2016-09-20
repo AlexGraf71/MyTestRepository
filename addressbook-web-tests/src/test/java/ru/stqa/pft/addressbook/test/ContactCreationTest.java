@@ -77,7 +77,7 @@ public class ContactCreationTest extends TestBase {
   }
 
 
-  @Test
+  @Test(enabled = false)
   public void testCreationNewContact() {
     Groups groups = app.db().groups();
     Contacts before = app.db().contacts();
