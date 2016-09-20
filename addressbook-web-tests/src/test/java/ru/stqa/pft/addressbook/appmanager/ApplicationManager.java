@@ -33,7 +33,7 @@ public class ApplicationManager {
   }
 
   public void init() throws IOException {
-    String target = System.getProperty("target", "local");
+    String target = System.getProperty("target", "remote");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
     dbHelper = new DbHelper();
 
@@ -44,11 +44,11 @@ public class ApplicationManager {
         wd = new ChromeDriver();
       } else if (Objects.equals(browser, BrowserType.OPERA_BLINK)) {
         wd = new OperaDriver();
-      } else {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setBrowserName(browser);
-        wd = new RemoteWebDriver(new URL((properties.getProperty("selenium.server"))), capabilities);
       }
+    }else {
+      DesiredCapabilities capabilities = new DesiredCapabilities();
+      capabilities.setBrowserName(browser);
+      wd = new RemoteWebDriver(new URL((properties.getProperty("selenium.server"))), capabilities);
     }
 
     wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
