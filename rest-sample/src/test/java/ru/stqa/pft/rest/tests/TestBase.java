@@ -16,12 +16,13 @@ import java.util.Set;
 public class TestBase {
   public boolean isIssueOpen(int issueId) throws IOException {
     String json = getExecutor().execute(Request.Get("http://demo.bugify.com/api/issues/" + issueId + ".json"))
-            .returnContent().asString();
+        .returnContent().asString();
     JsonElement parsed = new JsonParser().parse(json);
     JsonElement issues = parsed.getAsJsonObject().get("issues");
-    Set<Issue> newIssue = new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {}.getType());
+    Set<Issue> newIssue = new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {
+    }.getType());
     String status = newIssue.iterator().next().getState_name();
-    if(Objects.equals(status, "close") | Objects.equals(status, "resolved")){
+    if (Objects.equals(status, "close") | Objects.equals(status, "resolved")) {
       return false;
     }
     return true;
@@ -32,6 +33,7 @@ public class TestBase {
       throw new SkipException("Ignored because of issue " + issueId);
     }
   }
+
   private Executor getExecutor() {
     return Executor.newInstance().auth("LSGjeU4yP1X493ud1hNniA==", "");
   }

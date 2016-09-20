@@ -11,7 +11,6 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.apache.http.HttpEntity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,7 +47,8 @@ public class HttpSession {
       response.close();
     }
   }
-  public boolean isLoggedInAs(String username) throws IOException{
+
+  public boolean isLoggedInAs(String username) throws IOException {
     HttpGet get = new HttpGet(app.getProperty("web.baseUrl") + "/index.php");
     CloseableHttpResponse response = httpclient.execute(get);
     String body = geTextFrom(response);

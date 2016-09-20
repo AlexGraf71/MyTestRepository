@@ -18,16 +18,16 @@ import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.Objects;
 
-public class TestBase{
+public class TestBase {
 
 
-  protected static final ApplicationManager app = new ApplicationManager(System.getProperty("browser",BrowserType.CHROME));
+  protected static final ApplicationManager app = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
   public boolean isIssueOpen(int issueId) throws MalformedURLException, ServiceException, RemoteException {
     MantisConnectPortType mc = new MantisConnectLocator().getMantisConnectPort(new URL(app.getProperty("web.soapUrl")));
     IssueData issue = mc.mc_issue_get(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), BigInteger.valueOf(issueId));
     String status = issue.getStatus().getName();
-    if(Objects.equals(status, "closed") | Objects.equals(status, "resolved")){
+    if (Objects.equals(status, "closed") | Objects.equals(status, "resolved")) {
       return false;
     }
     return true;
@@ -44,15 +44,14 @@ public class TestBase{
 
   public void setUp() throws Exception {
     app.init();
-    app.ftp().upload(new File("src/test/resources/config_inc.php"), "config_inc.php","config_inc.php.bak");
+    app.ftp().upload(new File("src/test/resources/config_inc.php"), "config_inc.php", "config_inc.php.bak");
   }
 
   @AfterSuite(alwaysRun = true)
   public void tearDown() throws IOException {
-    app.ftp().restore("config_inc.php.bak","config_inc.php");
+    app.ftp().restore("config_inc.php.bak", "config_inc.php");
     app.stop();
   }
-
 
 
 }

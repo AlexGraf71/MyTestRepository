@@ -7,7 +7,8 @@ public class ResetPassword extends HelperBase {
   public ResetPassword(ApplicationManager app) {
     super(app);
   }
-  public void reset (String username) {
+
+  public void reset(String username) {
     click(By.xpath("//*[@id=\"menu-items\"]/li[7]/a"));
     click(By.xpath("//*[@id=\"manage-menu\"]/ul/li[1]/a"));
     click(By.xpath("//*[@id=\"manage-user-div\"]/table/tbody/tr[2]/td[1]/a"));
